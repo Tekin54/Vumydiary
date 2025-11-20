@@ -1,34 +1,27 @@
 import express from 'express';
 import morgan from 'morgan';
-import dotenv from 'dotenv';
-import path from 'path';
 import cors from 'cors';
-import debug from 'debug';
-import { errorHandler, notFound } from './middleware/errorHandler.js';
+import path from 'path';
+import dotenv from 'dotenv';
 
-import eintragRoute from './api/routes/eintragsRoutes.js';
+import defaultRouter from './api/routes/index.js';
+import { errorHandler, notFoundHandler } from './error/errorHandler.js';
 
 dotenv.config();
-debug.enable(process.env.DEBUG); // enable DEBUG from .env
-
-const startup = debug('startup');
-const dirname = path.resolve();
+const dirName = path.resolve();
 
 const app = express();
 
-app.use(morgan('dev'));
+app.use(morgan('tiny'));
 app.use(cors());
-
-app.use(express.static(path.join(dirname, '/public')));
 app.use(express.json());
+app.use(express.static(path.join(dirName, 'public')));
 
-app.use('/api', eintragRoute);
-
+app.use('/api', defaultRouter);
+app.use(notFoundHandler);
 app.use(errorHandler);
-app.use(notFound);
 
-// don´t start server when in test mode
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => startup(`Server is running on port ${PORT}`));
+const PORT = process.env.PORT ?? 5555;
 
-export default app;
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+console.log('Server started');
