@@ -1,0 +1,48 @@
+
+### Register
+POST  http://localhost:3000/api/auth/user/signup
+Content-Type: application/json
+
+{
+  "firstName": "efe",
+  "lastName": "sert",
+  "email": "efeserzttttttt@gmail.com",
+  "password": "123456789",
+  "confirmPassword": "123456789"
+}
+### Logout
+POST  http://localhost:3000/api/user/signout
+
+### Login
+POST  http://localhost:3000/api/auth/user/signin
+Content-Type: application/json
+
+{
+  "email": "efeserzttttttt@gmail.com",
+  "password": "123456789"
+}
+###
+DELETE http://localhost:3000/api/user/delaccount/6
+
+### update Password
+PATCH http://localhost:3000/api/user/update-password/6
+Content-Type: application/json
+
+{
+  "oldPassword": "123456789",
+  "newPassword": "12345678912",
+  "confirmPassword": "12345678912"
+}
+
+
+### update Name
+PATCH http://localhost:3000/api/user/update-name/6
+Content-Type: application/json
+
+{
+  "newFirstName": "Efe",
+  "newLastName": "Hartmann=Sert verstehst",
+  "password": "12345678912"
+}
+
+

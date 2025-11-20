@@ -1,0 +1,44 @@
+GET http://localhost:3000/api/entries
+###
+GET http://localhost:3000/api/user/1
+###
+GET http://localhost:3000/api/entries/1
+###
+GET http://localhost:3000/api/entry/2
+###
+GET http://localhost:3000/api/entry/1/user/1
+###
+### Insert Entry for User
+POST http://localhost:3000/api/entry
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "user_location_id": 2,
+  "title": "Mein zweiter Eintrag",
+  "description": "Heute war ein guter Tag.",
+  "mood": "happy"
+}
+
+###
+PATCH http://localhost:3000/api/entry/1/user/1
+Content-Type: application/json
+
+{
+  "title": "Hey",
+  "mood": "happy"
+}
+###
+DELETE http://localhost:3000/api/entry/3/user/1
+###
+GET http://localhost:3000/api/locations/1
+###
+PATCH http://localhost:3000/api/location/1/user/1
+Content-Type: application/json
+
+{
+  "plz": "12345",
+  "strasse": "Neue Straße 7"
+}
+###
+DELETE http://localhost:3000/api/location/1/user/1
