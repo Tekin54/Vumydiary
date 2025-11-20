@@ -24,4 +24,5 @@ const aboutViewVariables = diaryStore.variables_functions.views_specific.AboutVi
 body {
   color: black;
 }
+/* ICH TESTE */
 </style>
